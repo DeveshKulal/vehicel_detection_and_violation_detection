@@ -7,3 +7,4 @@
 *.wmv
 *.webm
 *.mpeg
+node_modules/
