@@ -5,157 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Detection</title>
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            background-color: #f4f7fb;
-            padding: 40px;
-        }
-
-        h1 {
-            color: #2e3b4e;
-            font-size: 2.8rem;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        h2 {
-            color: #2e3b4e;
-            font-size: 2rem;
-            margin-top: 30px;
-            font-weight: 500;
-        }
-
-        /* Form styling */
-        form {
-            margin: 30px 0;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
-
-        input[type="file"] {
-            padding: 12px 16px;
-            font-size: 1.1rem;
-            border: 2px solid #d1d5db;
-            border-radius: 8px;
-            background-color: #ffffff;
-            transition: border 0.3s;
-        }
-
-        input[type="file"]:hover {
-            border-color: #4CAF50;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 14px 25px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            border-radius: 6px;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        /* Container for the video streams */
-        #video-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            justify-items: center;
-            margin-top: 40px;
-        }
-
-        #video-container img {
-            width: 100%;
-            max-width: 560px;
-            height: auto;
-            border: 4px solid #4CAF50;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .summary {
-            margin: 20px;
-            font-size: 1.3rem;
-            color: #333;
-            font-weight: 500;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            .summary {
-                font-size: 1.1rem;
-            }
-
-            button {
-                font-size: 1rem;
-            }
-
-            #video-container {
-                grid-template-columns: 1fr;
-            }
-
-            input[type="file"] {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <h1>Vehicle Detection and Violation Monitoring</h1>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="video" accept="video/*" multiple required>
-        <button type="submit">Upload and Process</button>
-    </form>
+<body class="bg-gray-50 text-gray-900 font-sans">
 
-    <div id="video-container">
-        <div>
-            <h2>Live Video Stream 1</h2>
-            <img id="live-video-0" src="" alt="Live Video Stream 1" />
-        </div>
-        <div>
-            <h2>Live Video Stream 2</h2>
-            <img id="live-video-1" src="" alt="Live Video Stream 2" />
-        </div>
-        <div>
-            <h2>Live Video Stream 3</h2>
-            <img id="live-video-2" src="" alt="Live Video Stream 3" />
-        </div>
-        <div>
-            <h2>Live Video Stream 4</h2>
-            <img id="live-video-3" src="" alt="Live Video Stream 4" />
-        </div>
-    </div>
+    <!-- Main Header -->
+    <header class="text-center py-12">
+        <h1 class="text-4xl font-extrabold text-gray-800">Vehicle Detection and Violation Monitoring</h1>
+        <p class="text-xl text-gray-600 mt-4">Upload a video to detect vehicles and monitor violations in real-time.</p>
+    </header>
 
+    <!-- Form Section -->
+    <section class="flex justify-center mb-12">
+        <form action="/upload" method="POST" enctype="multipart/form-data"
+            class="w-full max-w-lg bg-white shadow-lg rounded-lg p-8 space-y-6">
+            <label for="video" class="block text-lg font-medium text-gray-700">Upload Video</label>
+            <input type="file" name="video" accept="video/*" multiple required
+                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
+            <button type="submit"
+                class="w-full py-3 bg-green-600 text-white rounded-lg text-lg font-semibold hover:bg-green-700 transition duration-200">Upload
+                and Process</button>
+        </form>
+    </section>
+
+    <!-- Video Container Section -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-screen-xl mx-auto px-4">
+        <!-- Live Video Streams -->
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Lane 1</h2>
+            <img id="live-video-0" class="w-full rounded-lg" src="" alt="Live Video Stream 1" />
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Lane 2</h2>
+            <img id="live-video-1" class="w-full rounded-lg" src="" alt="Live Video Stream 2" />
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Lane 3</h2>
+            <img id="live-video-2" class="w-full rounded-lg" src="" alt="Live Video Stream 3" />
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Lane 4</h2>
+            <img id="live-video-3" class="w-full rounded-lg" src="" alt="Live Video Stream 4" />
+        </div>
+    </section>
+
+    <!-- Socket.IO Integration Script -->
     <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
     <script>
         const socket = io.connect("http://127.0.0.1:5000");
 
         socket.on('video_frame', function (data) {
-            // Display the video frame on the page
             const imgElement = document.getElementById('live-video-' + data.video_id);
             const blob = new Blob([new Uint8Array(data.frame)], { type: 'image/jpeg' });
             const url = URL.createObjectURL(blob);
