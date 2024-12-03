@@ -91,7 +91,12 @@ def stream_video_frames(video_path, video_id):
 
     cap.release()
 
+
 @app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/project')
 def index():
     return render_template('index.html')
 
