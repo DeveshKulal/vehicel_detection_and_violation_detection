@@ -11,7 +11,6 @@ This project is a smart traffic management system that uses **YOLO (You Only Loo
 - 🏎️ Speed Detection based on Frame Analysis
 - 📸 Automatic Snapshot Capturing of Violations
 - 🗃️ Logging Violations with Timestamp and Type
-- 🖥️ Real-Time Processing from CCTV/Webcam
 - 🔢 Number Plate Detection Integration (optional)
 
 ## 🧠 Technologies Used
